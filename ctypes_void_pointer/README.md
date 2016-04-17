@@ -1,7 +1,7 @@
 # Fun with pointers in Python
 
 Sometimes you need to use Python to access code from precompiled library written in C.
-This can easily be done using Python's ctypes module.
+This can easily be done using Python's _ctypes_ module.
 This module has many powerful features that enable you to interact with precompiled C library code.
 In this short entry I will not write about ctypes from bottom up, rather I would like to document peculiar problem that I came across few weeks ago.
 The problem was with dereferencing void pointer, that was within structure, which it self was also passed as pointer to library function :)
@@ -22,13 +22,14 @@ Files:
 > Additional warning for C++ libraries, when using ctypes you will have to use mangled name of the function from SO, unless functions were compiled with extern "C".
 > Either way *nm* will show you names of functions that are available in SO.
 
-File **foo.h** holds definition of structure foobar, with two elements, count and void pointer.
-_count_ holds number of elements.
-_void pointer_ will be used to hold address of the dynamically allocated memory inside _set_values_foobar_ function.
-In **foo.c** you can see, that void_pointer points to memory allocated by malloc.
+File **foo.h** holds definition of structure foobar, with two elements, count and void pointer.  
+_count_ holds number of elements.  
+_void pointer_ will be used to hold address of the dynamically allocated memory inside _set_values_foobar_ function.  
+In **foo.c** you can see, that _void_pointer_ points to a memory allocated by malloc.
 The values stored are ints, from _0_ to _value - 1_.
 
-Now finally into the Python :) **foo.py** is using standard way of accessing _set_values_foobar()_ function
+Now finally lets get to the Python :)  
+**foo.py** is using standard way of accessing _set_values_foobar()_ function
 ```python
 libfoo = cdll.LoadLibrary("./libfoo.so")
 
