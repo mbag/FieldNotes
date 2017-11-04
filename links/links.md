@@ -7,3 +7,6 @@ chkrootkit - tool to check presence of the known rootkits
 
 ## What every programmer should know about memory
 https://lwn.net/Articles/250967/
+
+## Honeypots
+https://www.robertputt.co.uk/learn-from-your-attackers-ssh-honeypot.html
